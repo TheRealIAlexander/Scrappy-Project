@@ -1,0 +1,119 @@
+{
+  "properties": {
+    "url": {
+      "description": "Original page URL.",
+      "type": "string"
+    },
+    "main_title": {
+      "description": "Title of the product.",
+      "type": "string"
+    },
+    "category": {
+      "description": "Category which the item is part of.",
+      "type": "string"
+    },
+    "full_path": {
+      "description": "Path from homepage to the acquired item.",
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "ref": {
+      "description": "Unique identifier of the item.",
+      "type": "string"
+    },
+    "description": {
+      "description": "Description of the item.",
+      "type": "string"
+    },
+    "material": {
+      "description": "The material used in the item.",
+      "type": "string"
+    },
+    "colors": {
+      "description": "List of colors the item is present in.",
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^.+$"
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "images": {
+      "description": "Images presented for each color.",
+      "type": "object",
+      "patternProperties": {
+        "^.+$": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": {
+            "type": "string",
+            "pattern": "^[^ ,.].*$"
+          }
+        }
+      },
+      "additionalProperties": false
+    },
+    "color_snippets": {
+      "description": "Snippet for each color of the product.",
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "string"
+        }
+      },
+      "additionalProperties": false
+    },
+    "sizes": {
+      "description": "List of available sizes per color.",
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "minProperties": 1
+    },
+    "sizes_not_available": {
+      "description": "List of available sizes per color.",
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "minProperties": 1
+    },
+    "price_hierarchy_colorsize": {
+      "description": "Dictionary of prices per color and size.",
+      "type": "object",
+      "patternProperties": {
+        "^.*$": {
+          "type": "object",
+          "patternProperties": {
+            "^.*$": {
+              "type": "array",
+              "items": {
+                "type": [
+                  "string",
+                  "number"
+                ],
+                "pattern": "^\\d+(\\.\\d+)?$"
+              }
+            }
+          }
+        }
+      },
+      "minProperties": 1
+    }
+  }
+}
